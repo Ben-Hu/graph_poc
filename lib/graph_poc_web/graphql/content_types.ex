@@ -3,6 +3,6 @@ defmodule GraphPocWeb.Graphql.ContentTypes do
 
   object :thing do
     field :id, :id
-    field :name, :string
+    field :new_name, :string
   end
 end

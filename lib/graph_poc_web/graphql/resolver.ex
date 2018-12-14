@@ -5,6 +5,13 @@ defmodule GraphPocWeb.Graphql.Resolver do
   ]
 
   def list_things(_parent, _args, _resolution) do
-    {:ok, @things}
+    {:ok, Enum.map(@things, &render/1)}
+  end
+
+  defp render(thing) do
+    %{
+      id: thing.id,
+      new_name: thing.name
+    }
   end
 end
