@@ -1,6 +1,9 @@
 defmodule GraphPocWeb.Router do
   use GraphPocWeb, :router
 
+  alias GraphPocWeb.Plugs.AuthPlug
+  alias GraphPocWeb.Plugs.AbsinthePlug
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -20,7 +23,7 @@ defmodule GraphPocWeb.Router do
   end
 
   scope "/api" do
-    pipe_through :api
+    pipe_through [:api, AuthPlug, AbsinthePlug]
 
     get "/things", GraphPocWeb.ThingController, :index
 
